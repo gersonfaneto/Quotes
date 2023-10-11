@@ -8,6 +8,8 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     let app = Router::new().route("/", get(health));
 
+    println!("Listening on {address}...");
+
     axum::Server::bind(&address.parse().unwrap())
         .serve(app.into_make_service())
         .await
