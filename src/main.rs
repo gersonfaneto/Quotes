@@ -16,6 +16,6 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     Ok(())
 }
 
-async fn health() -> http::StatusCode {
-    http::StatusCode::OK
+async fn health() -> (http::StatusCode, &'static str) {
+    (http::StatusCode::OK, "Hello, World!")
 }
