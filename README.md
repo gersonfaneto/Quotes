@@ -1,9 +1,9 @@
 ```markdown
-  ____ ____  _   _ ____               _    ____ ___
- / ___|  _ \| | | |  _ \             / \  |  _ \_ _|        # Basic CRUD API written in Rust.
-| |   | |_) | | | | | | |  _____    / _ \ | |_) | |
-| |___|  _ <| |_| | |_| | |_____|  / ___ \|  __/| |         # by @gersonfaneto
- \____|_| \_\\___/|____/          /_/   \_\_|  |___|
+  ___              _
+ / _ \ _   _  ___ | |_ ___  ___         # Basic CRUD API written in Rust.
+| | | | | | |/ _ \| __/ _ \/ __|                                          
+| |_| | |_| | (_) | ||  __/\__ \        # by @gersonfaneto
+ \__\_\\__,_|\___/ \__\___||___/
 ```
 
 > This project was made for learning purposes...
