@@ -1,12 +1,13 @@
-use axum::http;
+mod handlers;
+mod models;
+
 use axum::routing::{get, Router};
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let port = std::env::var("PORT").unwrap_or_else(|_| "3000".to_string());
     let address = format!("0.0.0.0:{}", port);
-
-    let app = Router::new().route("/", get(health));
+    let app = Router::new().route("/", get(handlers::get::health));
 
     println!("Listening on {address}...");
 
@@ -16,8 +17,4 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         .unwrap();
 
     Ok(())
-}
-
-async fn health() -> (http::StatusCode, &'static str) {
-    (http::StatusCode::OK, "Hello, World!")
 }
