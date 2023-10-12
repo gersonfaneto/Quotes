@@ -14,3 +14,17 @@ pub struct Quote {
     inserted_at: chrono::DateTime<chrono::Utc>,
     updated_at: chrono::DateTime<chrono::Utc>,
 }
+
+impl Quote {
+    pub fn new(book: String, quote: String) -> Self {
+        let current_time = chrono::Utc::now();
+
+        Self {
+            id: uuid::Uuid::new_v4(),
+            book,
+            quote,
+            inserted_at: current_time,
+            updated_at: current_time,
+        }
+    }
+}
