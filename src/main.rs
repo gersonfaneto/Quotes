@@ -1,12 +1,27 @@
-use axum::http;
-use axum::routing::{get, Router};
+mod handlers;
+mod models;
+
+use axum::routing::{get, post, Router};
+use sqlx::postgres::PgPoolOptions;
+use std::env;
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let port = std::env::var("PORT").unwrap_or_else(|_| "3000".to_string());
     let address = format!("0.0.0.0:{}", port);
 
-    let app = Router::new().route("/", get(health));
+    let database_url = env::var("DATABASE_URL").expect("Missing enviromet variable - DATABASE_URL");
+
+    let pool = PgPoolOptions::new()
+        .max_connections(5)
+        .connect(&database_url)
+        .await
+        .unwrap();
+
+    let app = Router::new()
+        .route("/", get(handlers::get::health))
+        .route("/quotes", post(handlers::post::create_quote))
+        .with_state(pool);
 
     println!("Listening on {address}...");
 
@@ -16,8 +31,4 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         .unwrap();
 
     Ok(())
-}
-
-async fn health() -> (http::StatusCode, &'static str) {
-    (http::StatusCode::OK, "Hello, World!")
 }
