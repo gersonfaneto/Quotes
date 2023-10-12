@@ -1,4 +1,5 @@
 use serde::{Deserialize, Serialize};
+use sqlx::FromRow;
 
 #[derive(Debug, Deserialize)]
 pub struct CreateQuote {
@@ -6,7 +7,7 @@ pub struct CreateQuote {
     pub quote: String,
 }
 
-#[derive(Serialize)]
+#[derive(Serialize, FromRow)]
 pub struct Quote {
     pub id: uuid::Uuid,
     pub book: String,

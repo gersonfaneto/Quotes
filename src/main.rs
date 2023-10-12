@@ -21,6 +21,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let app = Router::new()
         .route("/", get(handlers::get::health))
         .route("/quotes", post(handlers::post::create_quote))
+        .route("/quotes", get(handlers::get::read_quotes))
         .with_state(pool);
 
     println!("Listening on {address}...");
