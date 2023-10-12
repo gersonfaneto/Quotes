@@ -2,17 +2,17 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Deserialize)]
 pub struct CreateQuote {
-    book: String,
-    quote: String,
+    pub book: String,
+    pub quote: String,
 }
 
 #[derive(Serialize)]
 pub struct Quote {
-    id: uuid::Uuid,
-    book: String,
-    quote: String,
-    inserted_at: chrono::DateTime<chrono::Utc>,
-    updated_at: chrono::DateTime<chrono::Utc>,
+    pub id: uuid::Uuid,
+    pub book: String,
+    pub quote: String,
+    pub inserted_at: chrono::DateTime<chrono::Utc>,
+    pub updated_at: chrono::DateTime<chrono::Utc>,
 }
 
 impl Quote {
