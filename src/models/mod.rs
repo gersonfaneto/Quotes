@@ -1,1 +1,1 @@
-pub mod quotes;
+pub mod quote;
