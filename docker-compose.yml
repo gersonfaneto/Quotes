@@ -4,9 +4,9 @@ volumes:
   pgdata: {}
 
 services:
-  quotes:
-    image: gersonfaneto/quotes:1.0.0
-    container_name: quotes
+  api:
+    image: gersonfaneto/quotes:latest
+    container_name: api
     build:
       context: .
       dockerfile: Dockerfile
