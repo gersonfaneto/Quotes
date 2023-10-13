@@ -18,7 +18,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         .await
         .unwrap();
 
-    let res = sqlx::migrate!("./migrations")
+    sqlx::migrate!("db/migrations")
         .run(&pool)
         .await
         .unwrap();
