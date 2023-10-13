@@ -1,12 +1,9 @@
 version: "3.9"
 
-volumes:
-  pgdata: {}
-
 services:
-  api:
-    image: gersonfaneto/quotes:latest
-    container_name: api
+  quotes:
+    container_name: quotes
+    image: gersonfaneto/quotes:v1.0.0
     build:
       context: .
       dockerfile: Dockerfile
@@ -16,17 +13,26 @@ services:
     ports:
       - "8080:8080"
     depends_on:
-      - db
+      db:
+        condition: service_healthy
 
   db:
-    image: postgres:16.0-alpine
     container_name: db
+    image: postgres:16.0-alpine
     user: postgres
+    volumes:
+      - db-data:/var/lib/postgresql/data
     environment:
       POSTGRES_DB: quotes
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
     ports:
       - "5432:5432"
-    volumes:
-      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD", "pg_isready"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  db-data:
