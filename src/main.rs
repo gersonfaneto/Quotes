@@ -1,7 +1,7 @@
 mod handlers;
 mod models;
 
-use axum::routing::{get, post, put, Router, delete};
+use axum::routing::{delete, get, post, put, Router};
 use sqlx::postgres::PgPoolOptions;
 use std::env;
 
@@ -15,6 +15,11 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let pool = PgPoolOptions::new()
         .max_connections(5)
         .connect(&database_url)
+        .await
+        .unwrap();
+
+    let res = sqlx::migrate!("./migrations")
+        .run(&pool)
         .await
         .unwrap();
 
