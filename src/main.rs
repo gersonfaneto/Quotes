@@ -1,7 +1,7 @@
 mod handlers;
 mod models;
 
-use axum::routing::{get, post, put, Router};
+use axum::routing::{get, post, put, Router, delete};
 use sqlx::postgres::PgPoolOptions;
 use std::env;
 
@@ -23,6 +23,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         .route("/quotes", post(handlers::post::create_quote))
         .route("/quotes", get(handlers::get::read_quotes))
         .route("/quotes/:id", put(handlers::put::update_quote))
+        .route("/quotes/:id", delete(handlers::delete::delete_quote))
         .with_state(pool);
 
     println!("Listening on {address}...");
