@@ -1,3 +1,4 @@
+-- Add migration script here
 CREATE TABLE IF NOT EXISTS quotes (
   id UUID PRIMARY KEY,
   book varchar NOT NULL,
