@@ -1,8 +1,8 @@
 version: "3.9"
 
 services:
-  quotes:
-    container_name: quotes
+  api:
+    container_name: api
     image: gersonfaneto/quotes:v1.0.0
     build:
       context: .
