@@ -1,7 +1,3 @@
-<div>
-    <a id="top"></a>
-</div>
-
 ```markdown
   ___              _
  / _ \ _   _  ___ | |_ ___  ___         # Basic CRUD API written in Rust.
@@ -134,12 +130,6 @@ following endpoints:
 
 Released under [MIT](https://github.com/gersonfaneto/Quotes/blob/main/LICENSE) by
 [@gersonfaneto](https://github.com/gersonfaneto).
-
-<div align="center">
-    <a href="#top">
-        <h6>Back to Top</h6>
-    </a>
-</div>
 
 <!-- NOTE: Links... -->
 
