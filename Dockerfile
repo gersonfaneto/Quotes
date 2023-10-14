@@ -1,38 +1,44 @@
-# See: https://docs.fl0.com/docs/builds/dockerfile/rust/
+# Stage 1: Create a builder image with Rust and Cargo dependencies.
+# NOTE: The `rust-musl-builder` base image is used as our `runtime` is an `alpine` image.
+FROM clux/muslrust:stable AS chef
 
-# Using the `cargo-chef` image to allow caching of the build dependencies.
-FROM lukemathwalker/cargo-chef:latest-rust-1.73.0 AS chef
-
-# Define the work directory.
+# Set the working directory for the image
 WORKDIR /app
 
-# Prepare the cache...
+# NOTE: The `cargo-chef` package allows for the caching of the build dependencies.
+RUN cargo install cargo-chef
+
+# Stage 2: Copy the source code and prepare the build recipe.
 FROM chef AS planner
 COPY . .
 RUN cargo chef prepare --recipe-path recipe.json
 
-# Cache the dependencies...
+# Stage 3: Build the application using the prepared recipe.
 FROM chef AS builder
+
 COPY --from=planner /app/recipe.json recipe.json
-RUN cargo chef cook --recipe-path recipe.json
+RUN cargo chef cook --release --target x86_64-unknown-linux-musl --recipe-path recipe.json
 
-# Build the project...
+# Copy the source code and build the release version.
 COPY . .
-RUN cargo build --release
+RUN cargo build --release --target x86_64-unknown-linux-musl
 
-# Using a new base image to execute the compiled binary.
-FROM rust:1.73-slim AS quotes
+# Stage 4: Create the final image for the application.
+# NOTE: The `alpine` base image is used, because it's lighter and we don't need the Rust toolchain anymore.
+FROM alpine:latest AS runtime
 
-# Define the environment variable needed for the DB.
+# Set environment variables for the application.
 ARG DATABASE_URL
 ENV DATABASE_URL=${DATABASE_URL}
 
-# Define the environment variable needed for the Web Server.
 ARG PORT
 ENV PORT=${PORT}
 
-# Move the compiled binary to the new image $PATH.
-COPY --from=builder /app/target/release/quotes /usr/local/bin
+# Set the working directory for the image
+WORKDIR /app
 
-# Define the entry point as the compiled binary.
+# Copy the built application from the `builder` stage to the final image.
+COPY --from=builder /app/target/x86_64-unknown-linux-musl/release/quotes /usr/local/bin/
+
+# Set the entry point for the application.
 ENTRYPOINT ["/usr/local/bin/quotes"]
