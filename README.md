@@ -1,3 +1,7 @@
+<div>
+    <a id="top"></a>
+</div>
+
 ```markdown
   ___              _
  / _ \ _   _  ___ | |_ ___  ___         # Basic CRUD API written in Rust.
@@ -8,10 +12,10 @@
 
 <div align="center">
 
-[![Activity](https://img.shields.io/github/last-commit/gersonfaneto/Quotes?color=blue&style=for-the-badge&logo=git)](https://github.com/gersonfaneto/Quotes/commit/main)
-[![License](https://img.shields.io/github/license/gersonfaneto/Quotes?color=blue&style=for-the-badge)](https://github.com/gersonfaneto/Quotes/blob/main/LICENSE)
-[![Stars](https://img.shields.io/github/stars/gersonfaneto/Quotes?color=blue&style=for-the-badge&logo=github)](https://github.com/gersonfaneto/Quotes)
-![Language](https://img.shields.io/static/v1?label=LANGUAGE&message=Rust&color=informational&style=for-the-badge)
+[![Commits][commits-shield]][commits-url]
+[![License][license-shield]][license-url]
+[![Stars][stars-shield]][stars-url]
+[![Language][language-shield]][language-url]
 
 </div>
 
@@ -35,9 +39,9 @@ This project is a basic CRUD (Create, Read, Update, Delete) API written in Rust.
 functionality for managing book quotes using a RESTful API approach. The application is built
 using:
 
-- The Axum web framework.
-- Tokyo as the asynchronous runtime.
-- SQLx for PostgreSQL database connectivity.
+- The [Axum][axum-url] web framework.
+- [Tokyo][toyko-url] as the asynchronous runtime.
+- [SQLx][sqlx-url] for PostgreSQL database connectivity.
 
 The primary purpose of this project is to serve as a learning tool, demonstrating how to create
 a simple yet functional API in Rust. It showcases essential concepts of asynchronous programming,
@@ -112,20 +116,43 @@ following endpoints:
   - Deletes a quote from the DB given it's ID. Returns a HTTP status code of 200 (OK) if the quote
     was found and deleted, or either a 404 (NOT_FOUND) or a 500 (INTERNAL_SERVER_ERROR) if it wasn't.
 
-When creating or updating a quote using the API endpoints described above, you should provide the
-following JSON structure:
-
-```json
-{
-  "book": "Les Misérables",
-  "quote": "It is nothing to die; it is dreadful not to live."
-}
-```
-
-> 📝 **Note**  
+> 📝 **Note**
+>
+> When creating or updating a quote using the API endpoints described above, you should provide the
+> following JSON structure:
+>
+> ```json
+> {
+>   "book": "Les Misérables",
+>   "quote": "It is nothing to die; it is dreadful not to live."
+> }
+> ```
+>
 > Both the `book` and `quote` fields are required.
 
 ## License
 
 Released under [MIT](https://github.com/gersonfaneto/Quotes/blob/main/LICENSE) by
 [@gersonfaneto](https://github.com/gersonfaneto).
+
+<div align="center">
+    <a href="#top">
+        <h6>Back to Top</h6>
+    </a>
+</div>
+
+<!-- NOTE: Links... -->
+
+[stars-url]: https://github.com/gersonfaneto/Quotes/stargazers
+[license-url]: https://github.com/gersonfaneto/Quotes/blob/main/LICENSE
+[commits-url]: https://github.com/gersonfaneto/Quotes/commit/main
+[language-url]: https://foundation.rust-lang.org/
+
+[stars-shield]: https://img.shields.io/github/stars/gersonfaneto/Quotes?color=blue&style=for-the-badge&logo=github
+[license-shield]: https://img.shields.io/github/license/gersonfaneto/Quotes?color=blue&style=for-the-badge
+[commits-shield]: https://img.shields.io/github/last-commit/gersonfaneto/Quotes?color=blue&style=for-the-badge&logo=git
+[language-shield]: https://img.shields.io/static/v1?label=LANGUAGE&message=Rust&color=informational&style=for-the-badge
+
+[axum-url]: https://github.com/tokio-rs/axum
+[toyko-url]: https://github.com/tokio-rs/tokio
+[sqlx-url]: https://github.com/launchbadge/sqlx
