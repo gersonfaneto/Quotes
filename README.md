@@ -81,7 +81,12 @@ docker compose up --build --detach
 > 📝 **Note**  
 > This step may take some time on the first run as the cache hasn't been built.
 
-If everything went well the containers are now running and you can start using the API!
+- If everything went well the containers are now running and you can start using the API! Once
+  you're finished with the it, remember to run the next command to clean the environment.
+
+```console
+docker compose down --volumes
+```
 
 ## Usage
 
