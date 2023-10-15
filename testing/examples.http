@@ -1,0 +1,9 @@
+###
+
+GET localhost:8080
+
+###
+
+GET localhost:8080/quotes
+
+###
