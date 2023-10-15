@@ -133,10 +133,15 @@ following endpoints:
 
 ## License
 
-Released under [MIT](https://github.com/gersonfaneto/Quotes/blob/main/LICENSE) by
-[@gersonfaneto](https://github.com/gersonfaneto).
+Released under [MIT][license-url] by [@gersonfaneto][profile-url].
 
 <!-- NOTE: Links... -->
+
+[profile-url]: https://github.com/gersonfaneto
+
+[axum-url]: https://github.com/tokio-rs/axum
+[toyko-url]: https://github.com/tokio-rs/tokio
+[sqlx-url]: https://github.com/launchbadge/sqlx
 
 [stars-url]: https://github.com/gersonfaneto/Quotes/stargazers
 [license-url]: https://github.com/gersonfaneto/Quotes/blob/main/LICENSE
@@ -147,7 +152,3 @@ Released under [MIT](https://github.com/gersonfaneto/Quotes/blob/main/LICENSE) b
 [license-shield]: https://img.shields.io/github/license/gersonfaneto/Quotes?color=blue&style=for-the-badge
 [commits-shield]: https://img.shields.io/github/last-commit/gersonfaneto/Quotes?color=blue&style=for-the-badge&logo=git
 [language-shield]: https://img.shields.io/static/v1?label=LANGUAGE&message=Rust&color=informational&style=for-the-badge
-
-[axum-url]: https://github.com/tokio-rs/axum
-[toyko-url]: https://github.com/tokio-rs/tokio
-[sqlx-url]: https://github.com/launchbadge/sqlx
